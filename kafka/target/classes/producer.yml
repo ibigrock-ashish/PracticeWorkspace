@@ -1,0 +1,9 @@
+spring:
+	kafka:
+		producer:
+ 			bootstrap.servers: localhost:9092
+      		group-id: test
+      		auto-offset-reset: earliest
+      		enable-auto-commit: true
+      		auto.commit.interval.ms: 1000
+      		session.timeout.ms: 30000
