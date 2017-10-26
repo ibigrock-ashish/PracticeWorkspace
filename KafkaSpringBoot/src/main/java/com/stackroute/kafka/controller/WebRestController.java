@@ -29,7 +29,7 @@ public class WebRestController {
 	@GetMapping(value="/consumer")
 	public String getAllRecievedMessage(){
 		String messages = storage.toString();
-		storage.clear();
+		//storage.clear();
 		
 		return messages;
 	}
