@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
- 
+
+import com.stackroute.kafka.model.Model;
+import com.stackroute.kafka.services.KafkaConsumer1;
 import com.stackroute.kafka.services.KafkaProducer;
-import com.stackroute.kafka.storage.MessageStorage;
  
 @RestController
 @RequestMapping(value="/kafka")
@@ -17,7 +18,10 @@ public class WebRestController {
 	KafkaProducer producer;
 	
 	@Autowired
-	MessageStorage storage;
+	KafkaConsumer1 consumer;
+	
+	@Autowired
+	Model model;
 	
 	@GetMapping(value="/producer")
 	public String producer(@RequestParam("data")String data){
@@ -28,8 +32,9 @@ public class WebRestController {
 	
 	@GetMapping(value="/consumer")
 	public String getAllRecievedMessage(){
-		String messages = storage.toString();
 		//storage.clear();
+		String messages = model.getValue();
+		System.out.println(messages);
 		
 		return messages;
 	}
